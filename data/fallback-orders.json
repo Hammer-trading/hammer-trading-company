@@ -1,0 +1,125 @@
+[
+  {
+    "id": "fallback-HTC-20260629-TJWDWJ",
+    "orderNumber": "HTC-20260629-TJWDWJ",
+    "invoiceNumber": "INV-1782739856239-NI8F",
+    "status": "PENDING",
+    "paymentMethod": "COD",
+    "paymentStatus": "PENDING",
+    "subtotal": 210000,
+    "discountTotal": 0,
+    "manualDiscount": 0,
+    "deliveryCharge": 0,
+    "manualDeliveryCharge": null,
+    "codAmount": 210000,
+    "total": 210000,
+    "customerName": "Smoke Quote Customer",
+    "customerPhone": "03055555555",
+    "customerEmail": "smoke.quote@hammer.local",
+    "province": "To be confirmed",
+    "city": "Lahore",
+    "area": null,
+    "addressLine": "Quotation converted order - confirm complete delivery address before dispatch.",
+    "nearestLandmark": null,
+    "courierName": "Default fallback delivery",
+    "trackingNumber": null,
+    "courierBookingId": null,
+    "internalNotes": "Converted from quote fallback-quote-1782739772424. Smoke test quote request",
+    "customerNotes": "Approved for COD conversion in smoke test.",
+    "deliveryOtp": "991729",
+    "createdAt": "2026-06-29T13:30:56.239Z",
+    "updatedAt": "2026-06-29T13:30:56.239Z",
+    "qrcodes": [],
+    "timeline": [
+      {
+        "id": "HTC-20260629-TJWDWJ-pending",
+        "status": "PENDING",
+        "note": "Converted from quote request. Delivery: Default fallback delivery.",
+        "createdAt": "2026-06-29T13:30:56.239Z"
+      }
+    ],
+    "items": [
+      {
+        "id": "HTC-20260629-TJWDWJ-p1",
+        "productId": "p1",
+        "name": "Bosch Impact Drill 650W",
+        "sku": "HTC-DRL-650",
+        "quantity": 12,
+        "price": 17500,
+        "total": 210000
+      }
+    ],
+    "summary": {
+      "subtotal": 210000,
+      "discount": 0,
+      "deliveryCharge": 0,
+      "estimatedDaysMin": 1,
+      "estimatedDaysMax": 2
+    }
+  },
+  {
+    "id": "fallback-HTC-20260629-7PJABJ",
+    "orderNumber": "HTC-20260629-7PJABJ",
+    "invoiceNumber": "INV-1782739769249-30QO",
+    "status": "PENDING",
+    "paymentMethod": "COD",
+    "paymentStatus": "PENDING",
+    "subtotal": 18500,
+    "discountTotal": 0,
+    "manualDiscount": 0,
+    "deliveryCharge": 180,
+    "manualDeliveryCharge": null,
+    "codAmount": 18680,
+    "total": 18680,
+    "customerName": "Smoke Test Customer",
+    "customerPhone": "03066666666",
+    "customerEmail": "smoke.order@hammer.local",
+    "province": "Punjab",
+    "city": "Lahore",
+    "area": "DHA",
+    "addressLine": "House 1, Street 2, DHA Lahore",
+    "nearestLandmark": "Main market",
+    "courierName": "Default fallback delivery",
+    "trackingNumber": null,
+    "courierBookingId": null,
+    "internalNotes": "Saved in local fallback store because PostgreSQL is not connected.",
+    "customerNotes": null,
+    "deliveryOtp": "196489",
+    "createdAt": "2026-06-29T13:29:29.249Z",
+    "updatedAt": "2026-06-29T13:29:29.249Z",
+    "qrcodes": [
+      {
+        "id": "HTC-20260629-7PJABJ-fallback-qr",
+        "url": "http://localhost:3000/confirm-delivery?token=fallback-HTC-20260629-7PJABJ",
+        "usedAt": null,
+        "expiresAt": "2026-07-06T13:29:29.249Z"
+      }
+    ],
+    "timeline": [
+      {
+        "id": "HTC-20260629-7PJABJ-pending",
+        "status": "PENDING",
+        "note": "Order placed in local fallback mode. Delivery: Default fallback delivery. Delivery OTP: 196489.",
+        "createdAt": "2026-06-29T13:29:29.249Z"
+      }
+    ],
+    "items": [
+      {
+        "id": "HTC-20260629-7PJABJ-p1",
+        "productId": "p1",
+        "name": "Bosch Impact Drill 650W",
+        "sku": "HTC-DRL-650",
+        "quantity": 1,
+        "price": 18500,
+        "total": 18500
+      }
+    ],
+    "summary": {
+      "subtotal": 18500,
+      "discount": 0,
+      "deliveryCharge": 180,
+      "estimatedDaysMin": 1,
+      "estimatedDaysMax": 2
+    }
+  }
+]

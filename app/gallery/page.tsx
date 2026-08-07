@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { DynamicMedia } from "@/components/storefront/dynamic-media";
+import { getPublishedProjects } from "@/lib/platform-content";
+
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "Work Gallery | Hammer Trading Company", description: "Hardware installation, before-and-after and project media from HTC field work." };
+
+export default async function GalleryPage() { const projects = await getPublishedProjects(); const media = projects.flatMap((project) => project.media.map((asset) => ({ ...asset, project }))); return <main className="pb-16"><header className="luminous-dark px-4 pb-14 pt-32 text-white sm:px-6 lg:px-10"><div className="mx-auto max-w-[90rem]"><p className="showroom-eyebrow text-red-300">Work evidence</p><h1 className="mt-3 font-display text-6xl font-black uppercase leading-[.85] sm:text-7xl">Project gallery</h1><p className="mt-5 max-w-2xl text-slate-300">Published images are linked to real projects and managed from the admin workspace.</p></div></header><section className="mx-auto max-w-[90rem] px-4 py-10 sm:px-6 lg:px-10"><div className="columns-1 gap-4 sm:columns-2 lg:columns-3">{media.map((asset, index) => <Link href={`/projects/${asset.project.slug}`} key={asset.id} className="group relative mb-4 block break-inside-avoid overflow-hidden rounded-lg bg-slate-100" style={{ aspectRatio: index % 3 === 0 ? "4 / 5" : "4 / 3" }}><DynamicMedia src={asset.url} alt={asset.altText || asset.project.title} className="transition duration-500 group-hover:scale-[1.04]"/><span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 to-transparent p-4 pt-12 text-sm font-black text-white">{asset.project.title}</span></Link>)}</div>{!media.length ? <div className="showroom-panel border-dashed p-10 text-center"><h2 className="text-xl font-black">Gallery is being prepared</h2><p className="mt-2 text-sm text-slate-500">Published project media will appear here automatically.</p></div> : null}</section></main>; }
+

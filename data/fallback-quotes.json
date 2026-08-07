@@ -1,0 +1,20 @@
+[
+  {
+    "id": "fallback-quote-1782739772424",
+    "productId": "p1",
+    "productName": "Bosch Impact Drill 650W",
+    "quantity": 12,
+    "customerName": "Smoke Quote Customer",
+    "customerPhone": "03055555555",
+    "customerEmail": "smoke.quote@hammer.local",
+    "city": "Lahore",
+    "note": "Smoke test quote request",
+    "status": "CONVERTED",
+    "adminReply": "Approved for COD conversion in smoke test.",
+    "quotedPrice": 210000,
+    "convertedOrderId": "fallback-HTC-20260629-TJWDWJ",
+    "convertedOrderNumber": "HTC-20260629-TJWDWJ",
+    "createdAt": "2026-06-29T13:29:32.424Z",
+    "updatedAt": "2026-06-29T13:30:56.244Z"
+  }
+]

@@ -1,0 +1,224 @@
+[
+  {
+    "id": "p2",
+    "name": "Stanley Claw Hammer 16oz",
+    "slug": "stanley-claw-hammer-16oz",
+    "sku": "HTC-HMR-16",
+    "barcode": "",
+    "brandId": "stanley",
+    "categoryId": "hand-tools",
+    "brand": {
+      "id": "stanley",
+      "name": "Stanley",
+      "slug": "stanley"
+    },
+    "category": {
+      "id": "hand-tools",
+      "name": "Hand Tools",
+      "slug": "hand-tools"
+    },
+    "description": "Balanced hammer with anti-slip grip.",
+    "shortDescription": "Balanced hammer with anti-slip grip.",
+    "price": 2850,
+    "compareAtPrice": 3400,
+    "costPrice": 2052,
+    "dealerPrice": 2565,
+    "wholesalePrice": 2394,
+    "minWholesaleQuantity": 5,
+    "stock": 55,
+    "lowStockThreshold": 5,
+    "weightKg": 0.8,
+    "dimensions": "",
+    "warranty": "Supplier warranty applies.",
+    "returnPolicy": "Return accepted for unopened or defective products according to store policy.",
+    "tags": [
+      "hand-tools",
+      "stanley"
+    ],
+    "seoTitle": "Stanley Claw Hammer 16oz",
+    "seoDescription": "Balanced hammer with anti-slip grip.",
+    "isHeavyItem": false,
+    "isBulky": false,
+    "isBestSeller": false,
+    "isFeatured": true,
+    "isNewArrival": false,
+    "isActive": true,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1200&q=80",
+        "alt": "Stanley Claw Hammer 16oz",
+        "isMain": true,
+        "sortOrder": 0
+      }
+    ],
+    "specs": [
+      {
+        "name": "Head",
+        "value": "16oz forged steel"
+      },
+      {
+        "name": "Handle",
+        "value": "Fiberglass grip"
+      },
+      {
+        "name": "Use",
+        "value": "Nailing and demolition"
+      }
+    ],
+    "inventory": {
+      "currentStock": 55,
+      "minStockLevel": 5,
+      "allowNegativeStock": false
+    },
+    "createdAt": "2026-06-29T13:29:29.253Z",
+    "updatedAt": "2026-06-29T13:29:29.253Z"
+  },
+  {
+    "id": "p3",
+    "name": "DeWalt Angle Grinder 900W",
+    "slug": "dewalt-angle-grinder-900w",
+    "sku": "HTC-GRD-900",
+    "barcode": "",
+    "brandId": "dewalt",
+    "categoryId": "power-tools",
+    "brand": {
+      "id": "dewalt",
+      "name": "DeWalt",
+      "slug": "dewalt"
+    },
+    "category": {
+      "id": "power-tools",
+      "name": "Power Tools",
+      "slug": "power-tools"
+    },
+    "description": "Compact grinder for cutting, polishing, and fabrication.",
+    "shortDescription": "Compact grinder for cutting, polishing, and fabrication.",
+    "price": 22500,
+    "compareAtPrice": 24900,
+    "costPrice": 16200,
+    "dealerPrice": 20250,
+    "wholesalePrice": 18900,
+    "minWholesaleQuantity": 5,
+    "stock": 9,
+    "lowStockThreshold": 5,
+    "weightKg": 3.2,
+    "dimensions": "",
+    "warranty": "Supplier warranty applies.",
+    "returnPolicy": "Return accepted for unopened or defective products according to store policy.",
+    "tags": [
+      "power-tools",
+      "dewalt"
+    ],
+    "seoTitle": "DeWalt Angle Grinder 900W",
+    "seoDescription": "Compact grinder for cutting, polishing, and fabrication.",
+    "isHeavyItem": true,
+    "isBulky": false,
+    "isBestSeller": true,
+    "isFeatured": false,
+    "isNewArrival": false,
+    "isActive": true,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?auto=format&fit=crop&w=1200&q=80",
+        "alt": "DeWalt Angle Grinder 900W",
+        "isMain": true,
+        "sortOrder": 0
+      }
+    ],
+    "specs": [
+      {
+        "name": "Power",
+        "value": "900W"
+      },
+      {
+        "name": "Disc",
+        "value": "4 inch"
+      },
+      {
+        "name": "Switch",
+        "value": "Slide lock"
+      }
+    ],
+    "inventory": {
+      "currentStock": 9,
+      "minStockLevel": 5,
+      "allowNegativeStock": false
+    },
+    "createdAt": "2026-06-29T13:29:29.253Z",
+    "updatedAt": "2026-06-29T13:29:29.253Z"
+  },
+  {
+    "id": "p4",
+    "name": "Ingco Safety Helmet",
+    "slug": "ingco-safety-helmet",
+    "sku": "HTC-SFY-HLM",
+    "barcode": "",
+    "brandId": "ingco",
+    "categoryId": "safety-gear",
+    "brand": {
+      "id": "ingco",
+      "name": "Ingco",
+      "slug": "ingco"
+    },
+    "category": {
+      "id": "safety-gear",
+      "name": "Safety Gear",
+      "slug": "safety-gear"
+    },
+    "description": "Lightweight protection for site work.",
+    "shortDescription": "Lightweight protection for site work.",
+    "price": 1450,
+    "compareAtPrice": 1800,
+    "costPrice": 1044,
+    "dealerPrice": 1305,
+    "wholesalePrice": 1218,
+    "minWholesaleQuantity": 5,
+    "stock": 75,
+    "lowStockThreshold": 5,
+    "weightKg": 0.5,
+    "dimensions": "",
+    "warranty": "Supplier warranty applies.",
+    "returnPolicy": "Return accepted for unopened or defective products according to store policy.",
+    "tags": [
+      "safety-gear",
+      "ingco"
+    ],
+    "seoTitle": "Ingco Safety Helmet",
+    "seoDescription": "Lightweight protection for site work.",
+    "isHeavyItem": false,
+    "isBulky": false,
+    "isBestSeller": false,
+    "isFeatured": false,
+    "isNewArrival": false,
+    "isActive": true,
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80",
+        "alt": "Ingco Safety Helmet",
+        "isMain": true,
+        "sortOrder": 0
+      }
+    ],
+    "specs": [
+      {
+        "name": "Material",
+        "value": "HDPE shell"
+      },
+      {
+        "name": "Fit",
+        "value": "Adjustable ratchet"
+      },
+      {
+        "name": "Standard",
+        "value": "Industrial safety"
+      }
+    ],
+    "inventory": {
+      "currentStock": 75,
+      "minStockLevel": 5,
+      "allowNegativeStock": false
+    },
+    "createdAt": "2026-06-29T13:29:29.253Z",
+    "updatedAt": "2026-06-29T13:29:29.253Z"
+  }
+]
