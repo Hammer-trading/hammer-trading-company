@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Card3D, AnimatedSection, GlassCard, FloatingElement, GradientOrb } from "./advanced-cards";
+import { AnimatedSection, FloatingElement, GradientOrb } from "./advanced-cards";
 import { DynamicMedia } from "../storefront/dynamic-media";
 
 export interface MediaItem {
@@ -360,13 +360,13 @@ export function MediaHero({
   overlayOpacity = 0.5,
   parallaxIntensity = 0.3,
 }: MediaHeroProps) {
-  const [scrollY, setScrollY] = useState(0);
+  const scrollY = useMotionValue(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+    const handleScroll = () => scrollY.set(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrollY]);
 
   const y = useTransform(scrollY, [0, 500], [0, parallaxIntensity * 500]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
