@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Palette, Layout, Monitor, Smartphone, Tablet, Sparkles, Check, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Palette, Layout, Monitor, Smartphone, Tablet, Sparkles, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { STOREFRONT_THEMES, STOREFRONT_LAYOUTS, ADMIN_UI_THEMES, ADMIN_UI_LAYOUTS, type StorefrontThemeId, type StorefrontLayoutId, type AdminUiThemeId, type AdminUiLayoutId } from "@/lib/theme-config";
-import { Card3D, GlassCard, AnimatedSection, FloatingElement, GradientOrb } from "./advanced-cards";
+import { Card3D, GlassCard, AnimatedSection, GradientOrb } from "./ui/advanced-cards";
 
 export function AdminThemeDesigner() {
   const [storefrontTheme, setStorefrontTheme] = useState<StorefrontThemeId>("industrial");

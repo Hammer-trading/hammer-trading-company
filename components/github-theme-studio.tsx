@@ -4,16 +4,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Github, 
-  Video, 
-  Image as ImageIcon, 
-  Plus, 
+  Plus,
   Settings, 
   Palette, 
   Monitor, 
   Smartphone, 
   Tablet 
 } from 'lucide-react';
-import { Card3D, AnimatedSection, GlassCard } from './ui/advanced-cards';
 import { GitHubMediaShowcase } from './github-media-showcase';
 import { GitHubMediaManager } from './github-media-manager';
 import { GitHubIntegrationGuide } from './github-integration-guide';
@@ -28,7 +25,8 @@ interface MediaItem {
 }
 
 export const GitHubThemeStudio = () => {
-  const [activeTab, setActiveTab] = useState<'manager' | 'showcase' | 'guide'>('manager');
+  type ActiveTab = 'manager' | 'showcase' | 'guide';
+  const [activeTab, setActiveTab] = useState<ActiveTab>('manager');
   const [previewDevice, setPreviewDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [themeColor, setThemeColor] = useState('#6366f1');
   
@@ -52,7 +50,7 @@ export const GitHubThemeStudio = () => {
     }
   ]);
 
-  const tabs = [
+  const tabs: Array<{ id: ActiveTab; label: string; icon: React.ReactNode }> = [
     { id: 'manager', label: 'Media Manager', icon: <Settings size={18} /> },
     { id: 'showcase', label: 'Live Showcase', icon: <Monitor size={18} /> },
     { id: 'guide', label: 'Integration Guide', icon: <Github size={18} /> }
@@ -84,7 +82,7 @@ export const GitHubThemeStudio = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium transition-all ${
                     activeTab === tab.id
                       ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -157,7 +155,7 @@ export const GitHubThemeStudio = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-medium whitespace-nowrap transition-all ${
                   activeTab === tab.id
                     ? 'bg-indigo-600 text-white'
