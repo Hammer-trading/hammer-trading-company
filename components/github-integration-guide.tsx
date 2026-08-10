@@ -85,7 +85,7 @@ https://raw.githubusercontent.com/username/repo/main/media/video.mp4`
       <div className="container mx-auto px-4">
         
         {/* Hero Section */}
-        <AnimatedSection effect="fade-up" className="text-center mb-20">
+        <AnimatedSection animation="fade-up" className="text-center mb-20">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -122,7 +122,7 @@ https://raw.githubusercontent.com/username/repo/main/media/video.mp4`
         </AnimatedSection>
 
         {/* Features Grid */}
-        <AnimatedSection effect="fade-up" className="mb-20">
+        <AnimatedSection animation="fade-up" className="mb-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
               <motion.div
@@ -145,7 +145,7 @@ https://raw.githubusercontent.com/username/repo/main/media/video.mp4`
         </AnimatedSection>
 
         {/* Step by Step Guide */}
-        <AnimatedSection effect="slide-right" className="mb-20">
+        <AnimatedSection animation="slide-right" className="mb-20">
           <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
           
           <div className="space-y-8">
@@ -204,7 +204,7 @@ https://raw.githubusercontent.com/username/repo/main/media/video.mp4`
         </AnimatedSection>
 
         {/* Quick Start CTA */}
-        <AnimatedSection effect="scale-up" className="text-center">
+        <AnimatedSection animation="scale-up" className="text-center">
           <GlassCard className="p-12 bg-gradient-to-br from-indigo-900/50 via-purple-900/50 to-pink-900/50 border-indigo-500/30">
             <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">

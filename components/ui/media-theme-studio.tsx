@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { MediaGallery, FilteredGallery, MediaHero } from "./media-gallery";
@@ -141,7 +141,7 @@ export function MediaThemeStudio({
   const [isPreviewMode, setIsPreviewMode] = useState(false);
 
   // Sample media items if none provided
-  const sampleItems: MediaItem[] = initialItems.length > 0 ? initialItems : [
+  const sampleItems: MediaItem[] = useMemo(() => initialItems.length > 0 ? initialItems : [
     {
       id: "1",
       src: "/brand/workshop-hero.webp",
@@ -160,7 +160,7 @@ export function MediaThemeStudio({
       type: "image",
       category: "branding",
     },
-  ];
+  ], [initialItems]);
 
   useEffect(() => {
     const uniqueCategories = Array.from(new Set(sampleItems.map(item => item.category).filter(Boolean))) as string[];
@@ -176,14 +176,6 @@ export function MediaThemeStudio({
       case "slow": return 0.8;
       case "fast": return 0.3;
       default: return 0.5;
-    }
-  };
-
-  const getShadowClass = () => {
-    switch (activeTheme.shadowIntensity) {
-      case "soft": return "shadow-md";
-      case "strong": return "shadow-2xl";
-      default: return "shadow-lg";
     }
   };
 

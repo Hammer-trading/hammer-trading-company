@@ -75,6 +75,7 @@ export function ProductCard({ product, index = 0, desktopColumns = 4 }: { produc
       ref={cardRef}
       style={{ transitionDelay: `${Math.min((index % 5) * 20, 80)}ms` }}
       className="store-product-card group relative flex h-full min-w-0 flex-col text-slate-950 dark:text-slate-50"
+      aria-labelledby={`product-title-${product.id}`}
       onPointerEnter={(event) => { if (event.pointerType !== "touch") setHovered(true); }}
       onPointerMove={moveCard}
       onPointerLeave={resetCard}
@@ -82,7 +83,7 @@ export function ProductCard({ product, index = 0, desktopColumns = 4 }: { produc
       <span className="store-product-depth-edge" aria-hidden="true" />
       <span className="store-product-light" aria-hidden="true" />
       <div className="relative">
-        <Link href={`/products/${product.slug}`} className="store-product-media relative block aspect-square overflow-hidden rounded-lg bg-slate-100 focus-visible:ring-2 focus-visible:ring-red-600/40 dark:bg-slate-900">
+        <Link href={`/products/${product.slug}`} className="store-product-media relative block aspect-square overflow-hidden rounded-lg bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600/40 dark:bg-slate-900" aria-label={`View ${product.name}`}>
           <Image src="/brand/htc-logo.png" alt="" fill className="object-contain p-10 opacity-[0.08]" sizes="180px" />
           <AnimatePresence initial={false} mode="sync">
             <motion.div key={currentImage} className="absolute inset-0" initial={reduceMotion ? false : { opacity: 0, scale: 1.035, x: 7 }} animate={{ opacity: 1, scale: hovered ? 1.035 : 1, x: 0 }} exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.992, x: -7 }} transition={{ duration: reduceMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}>
@@ -99,20 +100,20 @@ export function ProductCard({ product, index = 0, desktopColumns = 4 }: { produc
             </motion.div>
           </AnimatePresence>
           <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/15 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          {discount > 0 ? <span className="store-product-badge store-product-badge-discount absolute left-3 top-3 z-10 rounded-full bg-orange-500 px-2.5 py-1 text-[11px] font-black text-white shadow-sm">-{discount}%</span> : null}
-          {product.isBestSeller ? <span className="store-product-badge store-product-badge-best absolute right-3 top-3 z-10 rounded-full bg-slate-950/88 px-2.5 py-1 text-[10px] font-black uppercase text-white">Best seller</span> : null}
-          {hasSelectableVariants ? <span className="store-product-options-badge absolute bottom-3 left-3 z-10 inline-flex items-center gap-1 rounded-md bg-white/92 px-2 py-1 text-[10px] font-black text-slate-900 shadow-sm"><Layers3 size={12} /> {product.variantCount} options</span> : null}
-          {availableImages.length > 1 ? <span className="absolute bottom-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/55 px-2 py-1 backdrop-blur-sm" aria-label={`${availableImages.length} product images`}>{availableImages.map((image, dotIndex) => <span key={image} className={`block size-1.5 rounded-full ${dotIndex === imageIndex % availableImages.length ? "bg-white" : "bg-white/35"}`} />)}</span> : null}
+          {discount > 0 ? <span className="store-product-badge store-product-badge-discount absolute left-3 top-3 z-10 rounded-full bg-orange-500 px-2.5 py-1 text-[11px] font-black text-white shadow-sm" aria-label={`${discount}% discount`}>-{discount}%</span> : null}
+          {product.isBestSeller ? <span className="store-product-badge store-product-badge-best absolute right-3 top-3 z-10 rounded-full bg-slate-950/88 px-2.5 py-1 text-[10px] font-black uppercase text-white" aria-label="Best seller">Best seller</span> : null}
+          {hasSelectableVariants ? <span className="store-product-options-badge absolute bottom-3 left-3 z-10 inline-flex items-center gap-1 rounded-md bg-white/92 px-2 py-1 text-[10px] font-black text-slate-900 shadow-sm" aria-label={`${product.variantCount} variants available`}><Layers3 size={12} aria-hidden="true" /> {product.variantCount} options</span> : null}
+          {availableImages.length > 1 ? <span className="absolute bottom-3 right-3 z-10 flex items-center gap-1 rounded-full bg-slate-950/55 px-2 py-1 backdrop-blur-sm" aria-label={`${availableImages.length} product images available`}>{availableImages.map((image, dotIndex) => <span key={image} className={`block size-1.5 rounded-full ${dotIndex === imageIndex % availableImages.length ? "bg-white" : "bg-white/35"}`} aria-hidden="true" />)}</span> : null}
         </Link>
 
         <div className="absolute right-3 top-1/2 z-20 flex -translate-y-1/2 flex-col gap-2 transition duration-200 md:translate-x-2 md:opacity-0 md:group-hover:translate-x-0 md:group-hover:opacity-100 md:group-focus-within:translate-x-0 md:group-focus-within:opacity-100">
-          <WishlistButton productId={product.id} productName={product.name} className="store-product-float-action grid size-10 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white disabled:opacity-50" />
+          <WishlistButton productId={product.id} productName={product.name} className="store-product-float-action grid size-11 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 disabled:opacity-50" />
           {hasSelectableVariants ? (
-            <Link href={`/products/${product.slug}`} className="store-product-float-action grid size-10 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white" aria-label={`Select options for ${product.name}`} title="Select options"><ShoppingCart size={17} /></Link>
+            <Link href={`/products/${product.slug}`} className="store-product-float-action grid size-11 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600" aria-label={`Select options for ${product.name}`} title="Select options"><ShoppingCart size={18} aria-hidden="true" /></Link>
           ) : (
-            <button type="button" onClick={() => cart.add(product.id)} disabled={product.stock <= 0} className="store-product-float-action grid size-10 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-50" aria-label={`Add ${product.name} to cart`} title="Add to cart"><ShoppingCart size={17} /></button>
+            <button type="button" onClick={() => cart.add(product.id)} disabled={product.stock <= 0} className="store-product-float-action grid size-11 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 disabled:cursor-not-allowed disabled:opacity-50" aria-label={`Add ${product.name} to cart`} title="Add to cart"><ShoppingCart size={18} aria-hidden="true" /></button>
           )}
-          <Link href={`/products/${product.slug}`} className="store-product-float-action grid size-10 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-950 hover:text-white" aria-label={`View ${product.name}`} title="View product"><Eye size={17} /></Link>
+          <Link href={`/products/${product.slug}`} className="store-product-float-action grid size-11 place-items-center rounded-full bg-white text-slate-950 shadow-[0_8px_24px_rgba(15,23,42,0.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-slate-950 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600" aria-label={`View ${product.name} details`} title="View product"><Eye size={18} aria-hidden="true" /></Link>
         </div>
       </div>
 
@@ -121,27 +122,27 @@ export function ProductCard({ product, index = 0, desktopColumns = 4 }: { produc
           <span className="truncate text-red-700 dark:text-red-400">{product.category}</span>
           <span className={product.stock <= 0 ? "text-red-600" : product.stock <= lowStock ? "text-orange-600" : "text-emerald-700 dark:text-emerald-400"}>{product.stock <= 0 ? "Out of stock" : product.stock <= lowStock ? `${product.stock} left` : "In stock"}</span>
         </div>
-        <Link href={`/products/${product.slug}`} className="mt-2 min-h-11 line-clamp-2 text-sm font-bold leading-[1.35] text-slate-950 transition-colors hover:text-red-700 dark:text-white dark:hover:text-red-400 sm:text-[15px]">{product.name}</Link>
+        <Link href={`/products/${product.slug}`} id={`product-title-${product.id}`} className="mt-2 min-h-11 line-clamp-2 text-sm font-bold leading-[1.35] text-slate-950 transition-colors hover:text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 dark:text-white dark:hover:text-red-400 sm:text-[15px]">{product.name}</Link>
 
-        <div className="mt-2 flex min-h-6 items-center gap-1.5 overflow-hidden">
+        <div className="mt-2 flex min-h-6 items-center gap-1.5 overflow-hidden" aria-label="Product variants">
           {hasSelectableVariants ? variantPreview.map((variant) => <span key={variant.id} className="store-product-variant-chip max-w-24 truncate rounded-md bg-slate-100 px-2 py-1 text-[9px] font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-300">{variant.title}</span>) : <span className="text-[10px] font-bold uppercase text-slate-400">{product.brand}</span>}
           {product.variantCount > variantPreview.length ? <span className="text-[10px] font-black text-slate-400">+{product.variantCount - variantPreview.length}</span> : null}
         </div>
 
         <div className="mt-3 flex flex-wrap items-end gap-x-2 gap-y-1">
-          <strong className="store-product-price text-lg font-black text-red-700 dark:text-red-400">{money(product.price)}</strong>
-          {product.compareAtPrice ? <span className="pb-0.5 text-xs text-slate-400 line-through">{money(product.compareAtPrice)}</span> : null}
+          <strong className="store-product-price text-lg font-black text-red-700 dark:text-red-400" aria-label={`Price: ${money(product.price)}`}>{money(product.price)}</strong>
+          {product.compareAtPrice ? <span className="pb-0.5 text-xs text-slate-400 line-through" aria-label={`Was ${money(product.compareAtPrice)}`}>{money(product.compareAtPrice)}</span> : null}
         </div>
-        <div className="mt-1 flex items-center gap-1 text-[11px] text-slate-500"><Star size={13} className="text-amber-500" fill={product.reviewCount ? "currentColor" : "none"} /><span>{product.reviewCount ? `${product.rating} (${product.reviewCount})` : "New arrival"}</span></div>
+        <div className="mt-1 flex items-center gap-1 text-[11px] text-slate-500" aria-label={`Rating: ${product.reviewCount ? `${product.rating} out of 5 stars based on ${product.reviewCount} reviews` : "No reviews yet"}`}><Star size={13} className="text-amber-500" fill={product.reviewCount ? "currentColor" : "none"} aria-hidden="true" /><span>{product.reviewCount ? `${product.rating} (${product.reviewCount})` : "New arrival"}</span></div>
 
         <div className="store-product-actions mt-auto grid grid-cols-1 gap-2 pt-4 sm:grid-cols-[1fr_auto_auto]">
           {hasSelectableVariants ? (
-            <Link href={`/products/${product.slug}`} className="store-product-primary-action inline-flex h-10 min-w-0 items-center justify-center gap-2 rounded-lg bg-red-700 px-3 text-xs font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-red-800 focus-visible:ring-2 focus-visible:ring-red-600/30"><ShoppingCart size={15} /> <span className="truncate">Select options</span></Link>
+            <Link href={`/products/${product.slug}`} className="store-product-primary-action inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-lg bg-red-700 px-3 text-xs font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600/30"><ShoppingCart size={16} aria-hidden="true" /> <span className="truncate">Select options</span></Link>
           ) : (
-            <button type="button" onClick={() => cart.add(product.id)} disabled={product.stock <= 0} className="store-product-primary-action inline-flex h-10 min-w-0 items-center justify-center gap-2 rounded-lg bg-red-700 px-3 text-xs font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-red-800 focus-visible:ring-2 focus-visible:ring-red-600/30 disabled:cursor-not-allowed disabled:opacity-50"><ShoppingCart size={15} /> Add to cart</button>
+            <button type="button" onClick={() => cart.add(product.id)} disabled={product.stock <= 0} className="store-product-primary-action inline-flex h-11 min-w-0 items-center justify-center gap-2 rounded-lg bg-red-700 px-3 text-xs font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-red-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600/30 disabled:cursor-not-allowed disabled:opacity-50"><ShoppingCart size={16} aria-hidden="true" /> Add to cart</button>
           )}
-          <button type="button" onClick={buyNow} disabled={product.stock <= 0 || hasSelectableVariants} className="hidden size-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-slate-950 hover:text-slate-950 focus-visible:ring-2 focus-visible:ring-red-600/30 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:grid" aria-label={`Buy ${product.name} now`} title={hasSelectableVariants ? "Select a variant first" : "Buy now"}><Zap size={16} /></button>
-          <Link href={`/products/${product.slug}`} className="hidden size-10 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-red-700 hover:text-red-700 focus-visible:ring-2 focus-visible:ring-red-600/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:grid" aria-label={`View ${product.name}`} title="View product"><Eye size={16} /></Link>
+          <button type="button" onClick={buyNow} disabled={product.stock <= 0 || hasSelectableVariants} className="hidden size-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-slate-950 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600/30 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:grid" aria-label={`Buy ${product.name} now`} title={hasSelectableVariants ? "Select a variant first" : "Buy now"}><Zap size={17} aria-hidden="true" /></button>
+          <Link href={`/products/${product.slug}`} className="hidden size-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition duration-200 hover:-translate-y-0.5 hover:border-red-700 hover:text-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:grid" aria-label={`View ${product.name} details`} title="View product"><Eye size={17} aria-hidden="true" /></Link>
         </div>
       </div>
     </article>

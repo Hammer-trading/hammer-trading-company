@@ -1,9 +1,10 @@
 'use client';
+/* eslint-disable @next/next/no-img-element */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Volume2, VolumeX, Maximize, Github } from 'lucide-react';
-import { Card3D, AnimatedSection, GlassCard } from './ui/advanced-cards';
+import { Play, Pause, Volume2, VolumeX, Github } from 'lucide-react';
+import { Card3D, AnimatedSection } from './ui/advanced-cards';
 
 interface MediaItem {
   id: string;
@@ -110,7 +111,7 @@ export const GitHubMediaShowcase = ({
         </motion.div>
 
         {/* 3D Featured Card */}
-        <AnimatedSection effect="scale-up" className="w-full max-w-5xl mb-12">
+        <AnimatedSection animation="scale-up" className="w-full max-w-5xl mb-12">
           <Card3D className="bg-black/40 border-white/10 backdrop-blur-xl overflow-hidden group">
             <div className="grid md:grid-cols-2 gap-0">
               {/* Media Display */}
