@@ -14,6 +14,7 @@ import { useCart } from "@/components/cart-provider";
 import type { CatalogProduct, CatalogProductVariant } from "@/lib/catalog";
 import { resolveStoreImage } from "@/lib/store-image";
 import { money } from "@/lib/utils";
+import { VisualProductChapters } from "@/components/product-visual-chapters";
 
 const ProductModelViewer = dynamic(() => import("@/components/storefront/product-model-viewer"), {
   ssr: false,
@@ -283,6 +284,10 @@ export function ProductDetailClient({ product }: { product: CatalogProduct }) {
           product={{ ...product, sku: selectedVariant.sku, price: selectedVariant.price }}
           variantId={selectedVariant.id.endsWith(":default") ? null : selectedVariant.id}
         />
+        
+        {/* Visual Product Chapters - reusable sections with real specs/variants/reviews */}
+        <VisualProductChapters product={product} selectedVariant={selectedVariant} variants={variants} />
+        
         <div className="mt-6 rounded-lg bg-[var(--surface)] p-4 shadow-sm ring-1 ring-[var(--line)]">
           <div className="flex items-center gap-2 font-bold"><Truck size={19} /> Delivery</div>
           <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">City-wise, area-wise, weight-based, heavy-item, same-day, pickup, and free-threshold rules are editable in admin.</p>
@@ -299,17 +304,6 @@ export function ProductDetailClient({ product }: { product: CatalogProduct }) {
               <p className="mt-1 text-xs leading-5 text-slate-500">{body}</p>
             </div>
           ))}
-        </div>
-        <div className="mt-6">
-          <h2 className="text-xl font-bold">Specifications</h2>
-          <dl className="mt-3 divide-y divide-[var(--line)] overflow-hidden rounded-lg bg-[var(--surface)] shadow-sm ring-1 ring-[var(--line)]">
-            {product.specs.map((spec) => (
-              <div key={spec.name} className="grid grid-cols-2 gap-4 p-3">
-                <dt className="font-semibold text-slate-600 dark:text-slate-400">{spec.name}</dt>
-                <dd>{spec.value}</dd>
-              </div>
-          ))}
-        </dl>
         </div>
         </section>
       </div>

@@ -64,6 +64,12 @@ export const STOREFRONT_THEMES = [
     name: "Prism Depth",
     description: "Pearl surfaces, chromatic edge depth and cinematic product focus without heavy rendering.",
     colors: ["#f2f5f4", "#10191b", "#087f78"]
+  },
+  {
+    id: "crucible",
+    name: "Crucible Spatial",
+    description: "Architectural spatial staging with meridian guides, layered planes and calibrated product depth.",
+    colors: ["#e9eeef", "#0f171a", "#0ea5a4"]
   }
 ] as const;
 
@@ -109,6 +115,12 @@ export const STOREFRONT_LAYOUTS = [
     name: "Split Commerce",
     description: "Alternating product rows and service panels optimized for comparison.",
     signature: "Comparative"
+  },
+  {
+    id: "spatial",
+    name: "Spatial Staging",
+    description: "Architectural depth planes with meridian guides for spatial product configuration.",
+    signature: "Architectural"
   }
 ] as const;
 
@@ -139,6 +151,15 @@ export const STOREFRONT_INTERFACES = [
     description: "A luminous editorial commerce system with floating surfaces, asymmetric product stories and calm premium motion.",
     signature: "Editorial / luminous",
     colors: ["#edf3f1", "#101b1c", "#087f78"]
+  },
+  {
+    id: "crucible-meridian",
+    theme: "crucible",
+    layout: "spatial",
+    name: "Crucible Meridian",
+    description: "A spatial product configurator with meridian lines, layered depth planes and architectural product staging.",
+    signature: "Spatial / architectural",
+    colors: ["#e9eeef", "#0f171a", "#0ea5a4"]
   }
 ] as const;
 

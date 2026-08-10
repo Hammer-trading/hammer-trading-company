@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const SPATIAL_STOREFRONT_THEMES = ["foundry3d", "axonometric", "prism3d"] as const;
+export const SPATIAL_STOREFRONT_THEMES = ["foundry3d", "axonometric", "prism3d", "crucible"] as const;
 
 export type SpatialStorefrontTheme = (typeof SPATIAL_STOREFRONT_THEMES)[number];
 

@@ -91,10 +91,34 @@ function WorkflowLinks() {
   return <div className="interface-workflow-links"><Link href="/products"><Layers3/><span><small>Configure</small><strong>Exact sizes and colors</strong></span><ArrowUpRight/></Link><Link href="/home-service"><Wrench/><span><small>Install</small><strong>Room hardware service</strong></span><ArrowUpRight/></Link><Link href="/track"><Truck/><span><small>Track</small><strong>Delivery progress</strong></span><ArrowUpRight/></Link><Link href="/shipping"><ScanLine/><span><small>Verify</small><strong>QR and OTP handover</strong></span><ArrowUpRight/></Link></div>;
 }
 
+function CrucibleMeridian({ products, categories, controls }: Props) {
+  return (
+    <main className="store-spatial-home interface-crucible">
+      <ControlledSection control={controls?.categories} className="crucible-atrium">
+        <header><span>Curated hardware / 01</span><h2>Architectural staging for working spaces.</h2></header>
+        <div className="crucible-depth-planes">
+          {categories.slice(0, 4).map((category, index) => (
+            <Link key={category.id} href={`/products?category=${encodeURIComponent(category.name)}`} className={`crucible-plane crucible-plane-${index + 1}`}>
+              <ResilientStoreImage src={category.image} alt="" sizes="(max-width: 768px) 50vw, 25vw" />
+              <div className="crucible-plane-label"><strong>{category.name}</strong><small>{category.count} products</small></div>
+            </Link>
+          ))}
+        </div>
+      </ControlledSection>
+      <ControlledSection control={controls?.products} className="crucible-collection">
+        <header><span>Selected pieces / 02</span><h2>Material honesty meets functional precision.</h2></header>
+        <div className="crucible-product-stagger">{products.slice(0, 6).map((product, index) => <ProductCard key={product.id} product={product} index={index} desktopColumns={3} />)}</div>
+      </ControlledSection>
+      <ControlledSection control={controls?.workflow} className="crucible-services"><header><span>Complete workflow / 03</span><h2>From specification to installation support.</h2></header><WorkflowLinks/></ControlledSection>
+    </main>
+  );
+}
+
 export function SpatialHomeExperience(props: Props) {
   const theme: SpatialStorefrontTheme | null = useSpatialStorefront();
   if (theme === "foundry3d") return <FoundryCinema {...props}/>;
   if (theme === "axonometric") return <AxonometricWorkshop {...props}/>;
   if (theme === "prism3d") return <PrismGallery {...props}/>;
+  if (theme === "crucible") return <CrucibleMeridian {...props}/>;
   return null;
 }
