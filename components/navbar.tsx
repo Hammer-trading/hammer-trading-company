@@ -30,6 +30,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LazyAnimatedValue } from "@/components/lazy-animated-value";
 import { LogoutButton } from "@/components/logout-button";
+import { CartDrawer } from "@/components/cart-drawer";
 import { useCart } from "@/components/cart-provider";
 import { CustomerThemeToggle } from "@/components/customer-theme-toggle";
 import type { PublicNavigationItem } from "@/lib/navigation-types";
