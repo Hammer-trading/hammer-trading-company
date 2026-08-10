@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-import { X, ShoppingCart, Plus, Minus, Trash2, PackageCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, Plus, Minus, Trash2, PackageCheck } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
-import { Button, LinkButton } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/button";
 import { money } from "@/lib/utils";
 
 type CartDrawerProps = {
