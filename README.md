@@ -50,6 +50,15 @@ npm run dev
 npm run build
 ```
 
+## Continuous Integration
+
+GitHub Actions (`/.github/workflows/ci.yml`) runs on every push and pull request:
+
+- **quality job:** `npm ci` → Prisma generate → `npm run lint` (zero warnings allowed) → `tsc --noEmit` → `next build` → `npm audit` (production deps, high+ fails)
+- **database job:** fresh PostgreSQL 16 container → `prisma migrate deploy` (all migrations) → seed → order-stock unit test
+
+A broken build can no longer be merged. Enable branch protection on `main` → "Require status checks" → `CI / Lint · Types · Build · Audit` and `CI / Migrations · Seed · Unit tests`.
+
 ## Netlify Deployment
 
 This repo includes `netlify.toml` and `.nvmrc` so it can be imported directly into Netlify.
