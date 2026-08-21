@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect, type ReactNode } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Card3D, AnimatedSection, GlassCard, FloatingElement, GradientOrb } from "./advanced-cards";
+import { AnimatedSection, FloatingElement, GradientOrb } from "./advanced-cards";
 import { DynamicMedia } from "../storefront/dynamic-media";
 
 export interface MediaItem {

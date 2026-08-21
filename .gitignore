@@ -1,4 +1,3 @@
-```
 # Dependencies
 node_modules/
 
@@ -8,13 +7,22 @@ build/
 .next/
 out/
 
+# TypeScript build cache
+*.tsbuildinfo
+
 # Logs
 *.log
+vercel-chat-runtime*.jsonl
 
 # Environment variables
 .env
 .env.local
-*.env.*
+.env.*.local
+!.env.example
+
+# Deployment tooling state (machine-local)
+.vercel/
+.verify/
 
 # IDE specific
 .vscode/
@@ -40,7 +48,10 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 *.cover
-*.log
 .git/modules/
 .DS_Store
-```
+
+# Stray artifacts
+i.complete
+s.href)})
+/images/
