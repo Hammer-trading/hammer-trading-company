@@ -8,6 +8,7 @@ import { ArrowRight, BadgeCheck, ChevronLeft, ChevronRight, Pause, Play, ScanLin
 import { useEffect, useMemo, useState } from "react";
 import { LinkButton } from "@/components/ui/button";
 import { useSpatialStorefront } from "@/components/storefront/use-spatial-storefront";
+import { useDeviceTier } from "@/components/use-device-tier";
 import type { HeroSlide } from "@/lib/storefront-banners";
 import { money } from "@/lib/utils";
 
@@ -33,7 +34,9 @@ function displayHeroTitle(value: string | null | undefined) {
 export function Hero({ product, slides = [] }: { product?: HeroProduct; slides?: HeroSlide[] }) {
   const reduceMotion = useReducedMotion();
   const spatialTheme = useSpatialStorefront();
-  const [canRenderWebgl, setCanRenderWebgl] = useState(false);
+  const { tier } = useDeviceTier();
+  const canRenderWebgl = Boolean(spatialTheme) && tier !== "none" && !reduceMotion;
+  const webglQuality = tier === "high" ? "high" : tier === "low" ? "low" : "medium";
   const [activeIndex, setActiveIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
   const [hoverPaused, setHoverPaused] = useState(false);
@@ -48,25 +51,6 @@ export function Hero({ product, slides = [] }: { product?: HeroProduct; slides?:
   }], [product?.image, slides]);
   const activeSlide = visualSlides[activeIndex] || visualSlides[0];
   const hasCarousel = visualSlides.length > 1;
-
-  useEffect(() => {
-    const query = window.matchMedia("(min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
-    const navigatorWithHints = navigator as Navigator & {
-      deviceMemory?: number;
-      connection?: { saveData?: boolean };
-    };
-    const hasEnoughMemory = (navigatorWithHints.deviceMemory ?? 8) >= 4;
-    const hasEnoughCores = (navigator.hardwareConcurrency ?? 8) >= 4;
-    const dataSaverDisabled = !navigatorWithHints.connection?.saveData;
-    const sync = () => setCanRenderWebgl(query.matches && hasEnoughMemory && hasEnoughCores && dataSaverDisabled && !document.hidden);
-    sync();
-    query.addEventListener("change", sync);
-    document.addEventListener("visibilitychange", sync);
-    return () => {
-      query.removeEventListener("change", sync);
-      document.removeEventListener("visibilitychange", sync);
-    };
-  }, []);
 
   useEffect(() => {
     if (activeIndex < visualSlides.length) return;
@@ -111,7 +95,7 @@ export function Hero({ product, slides = [] }: { product?: HeroProduct; slides?:
 
         <div className="store-hero-scrim pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
         <div className="store-hero-texture pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
-        {spatialTheme && canRenderWebgl ? <ThreeHeroStage theme={spatialTheme} /> : null}
+        {spatialTheme && canRenderWebgl ? <ThreeHeroStage theme={spatialTheme} quality={webglQuality} /> : null}
         {spatialTheme ? <div className="store-spatial-hud" aria-hidden="true"><span>HTC / CATALOGUE</span><span>LIVE INVENTORY</span><i /></div> : null}
 
         <motion.div className="pointer-events-none absolute right-3 top-3 z-[2] h-12 w-28 sm:right-7 sm:top-6 sm:h-24 sm:w-52 lg:h-28 lg:w-60" initial={reduceMotion ? false : { opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.5, delay: reduceMotion ? 0 : 0.2 }}>

@@ -29,6 +29,7 @@ import {
   Moon,
   PackageSearch,
   PackageCheck,
+  Palette,
   PanelLeftClose,
   PanelLeftOpen,
   RotateCcw,
@@ -82,7 +83,8 @@ const links = [
   { icon: TicketPercent, label: "Coupons", href: "/admin/coupons", permission: "COUPONS_MANAGE" },
   { icon: ImageIcon, label: "Banners", href: "/admin/banners", permission: "BANNERS_MANAGE" },
   { icon: PanelsTopLeft, label: "Website", href: "/admin/website", permission: "CONTENT_MANAGE" },
-  { icon: Sparkles, label: "3D Store", href: "/admin/store-design", permission: "SETTINGS_MANAGE" },
+  { icon: Sparkles, label: "3D Storefront", href: "/admin/store-3d", permission: "SETTINGS_MANAGE" },
+  { icon: Palette, label: "Store Design", href: "/admin/store-design", permission: "SETTINGS_MANAGE" },
   { icon: Info, label: "About", href: "/admin/about", permission: "CONTENT_MANAGE" },
   { icon: PackageCheck, label: "Room Packages", href: "/admin/room-packages", permission: "PACKAGES_MANAGE" },
   { icon: Star, label: "Reviews", href: "/admin/reviews", permission: "REVIEWS_MANAGE" },
@@ -100,7 +102,7 @@ const links = [
 
 const linkGroups = [
   { title: "Control", items: ["/admin", "/admin/orders", "/admin/finance", "/admin/products", "/admin/inventory"] },
-  { title: "Catalog", items: ["/admin/categories", "/admin/brands", "/admin/coupons", "/admin/banners", "/admin/website", "/admin/store-design", "/admin/about", "/admin/room-packages", "/admin/reviews"] },
+  { title: "Catalog", items: ["/admin/categories", "/admin/brands", "/admin/coupons", "/admin/banners", "/admin/website", "/admin/store-3d", "/admin/store-design", "/admin/about", "/admin/room-packages", "/admin/reviews"] },
   { title: "Customers", items: ["/admin/customers", "/admin/abandoned-carts", "/admin/messages", "/admin/room-services", "/admin/support", "/admin/quotes", "/admin/returns"] },
   { title: "Delivery", items: ["/admin/delivery", "/admin/couriers", "/admin/riders"] },
   { title: "System", items: ["/admin/reports", "/admin/staff", "/admin/activity-logs", "/admin/account", "/admin/settings"] }

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { upload } from "@vercel/blob/client";
 import { AnimatePresence, motion } from "framer-motion";
-import { Copy, Download, Edit, ImagePlus, Plus, RefreshCw, Search, Trash2, Upload, X } from "lucide-react";
+import { Boxes, Copy, Download, Edit, ImagePlus, Plus, RefreshCw, Search, Trash2, Upload, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { money, slugify } from "@/lib/utils";
@@ -409,6 +410,38 @@ export function AdminProductManager({ categories, brands }: { categories: Lookup
     }
   }
 
+  async function uploadModelFile(file: File | undefined) {
+    if (!file || !form) return;
+    if (!/\.(glb|gltf)$/i.test(file.name)) {
+      setToast("3D models must be .glb or .gltf files");
+      return;
+    }
+    if (file.size > 20_000_000) {
+      setToast("3D model exceeds the 20 MB limit");
+      return;
+    }
+    setToast("Uploading 3D model...");
+    try {
+      const safeName = file.name.toLowerCase().replace(/[^a-z0-9._-]+/g, "-").replace(/^-+|-+$/g, "").slice(-120) || "model";
+      const blob = await upload(`htc/media/${Date.now()}-${safeName}`, file, {
+        access: "public",
+        handleUploadUrl: "/api/admin/media/upload",
+        contentType: file.type || "model/gltf-binary",
+        multipart: file.size > 5_000_000,
+        clientPayload: JSON.stringify({
+          kind: "MODEL",
+          name: file.name,
+          mimeType: file.type || "model/gltf-binary",
+          sizeBytes: file.size
+        })
+      });
+      update("modelUrl", blob.url);
+      setToast("3D model uploaded. Save the product to apply it.");
+    } catch (reason) {
+      setToast(reason instanceof Error ? reason.message : "3D model upload failed");
+    }
+  }
+
   function addVariant() {
     if (!form) return;
     const index = form.variants.length + 1;
@@ -578,7 +611,10 @@ export function AdminProductManager({ categories, brands }: { categories: Lookup
                 <input className="rounded-lg border p-2 dark:bg-slate-900" placeholder="Tags comma separated" value={form.tags.join(", ")} onChange={(event) => update("tags", event.target.value.split(",").map((tag) => tag.trim()).filter(Boolean))} />
                 <input className="rounded-lg border p-2 dark:bg-slate-900" placeholder="SEO title" value={form.seoTitle} onChange={(event) => update("seoTitle", event.target.value)} />
                 <input className="rounded-lg border p-2 dark:bg-slate-900" placeholder="SEO description" value={form.seoDescription} onChange={(event) => update("seoDescription", event.target.value)} />
-                <input className="rounded-lg border p-2 dark:bg-slate-900" placeholder="3D model URL (.glb or .gltf, optional)" value={form.modelUrl} onChange={(event) => update("modelUrl", event.target.value)} />
+                <div className="flex gap-2">
+                  <input className="min-w-0 flex-1 rounded-lg border p-2 dark:bg-slate-900" placeholder="3D model URL (.glb or .gltf, optional)" value={form.modelUrl} onChange={(event) => update("modelUrl", event.target.value)} />
+                  <label className="inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg bg-slate-100 px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-200 dark:bg-slate-900 dark:text-slate-200" title="Upload a .glb or .gltf model (max 20 MB)"><Boxes size={15} /> Upload<input type="file" accept=".glb,.gltf,model/gltf-binary" className="hidden" onChange={(event) => { void uploadModelFile(event.target.files?.[0]); event.target.value = ""; }} /></label>
+                </div>
                 <input className="rounded-lg border p-2 dark:bg-slate-900" placeholder="3D model poster image URL (optional)" value={form.modelPosterUrl} onChange={(event) => update("modelPosterUrl", event.target.value)} />
                 <textarea className="rounded-lg border p-2 md:col-span-2 dark:bg-slate-900" placeholder="Description" value={form.description} onChange={(event) => update("description", event.target.value)} />
                 <textarea className="rounded-lg border p-2 md:col-span-2 dark:bg-slate-900" placeholder="Specifications, one per line: Name: Value" value={form.specs.map((spec) => `${spec.name}: ${spec.value}`).join("\n")} onChange={(event) => update("specs", event.target.value.split("\n").map((line) => { const [name, ...value] = line.split(":"); return name && value.length ? { name: name.trim(), value: value.join(":").trim() } : null; }).filter(Boolean) as ProductSpecInput[])} />

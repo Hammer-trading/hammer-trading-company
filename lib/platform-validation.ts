@@ -181,7 +181,7 @@ export const aboutPageSchema = z.object({
 });
 
 export const mediaAssetSchema = z.object({
-  kind: z.enum(["IMAGE", "VIDEO", "PDF", "DOCUMENT"]),
+  kind: z.enum(["IMAGE", "VIDEO", "PDF", "DOCUMENT", "MODEL"]),
   name: z.string().trim().min(2).max(180),
   url: z.string().trim().min(1).max(5_500_000),
   mimeType: z.string().trim().max(120).optional().nullable(),
@@ -190,7 +190,7 @@ export const mediaAssetSchema = z.object({
   metadata: z.record(z.string(), z.unknown()).default({})
 }).superRefine((value, context) => {
   const size = Number(value.sizeBytes || 0);
-  const max = value.kind === "VIDEO" ? 250_000_000 : value.kind === "IMAGE" ? 12_000_000 : 25_000_000;
+  const max = value.kind === "VIDEO" ? 250_000_000 : value.kind === "IMAGE" ? 12_000_000 : value.kind === "MODEL" ? 20_000_000 : 25_000_000;
   if (size > max) {
     context.addIssue({ code: z.ZodIssueCode.custom, path: ["sizeBytes"], message: `${value.kind.toLowerCase()} exceeds the upload limit` });
   }

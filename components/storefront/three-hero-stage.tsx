@@ -129,37 +129,42 @@ function PrismAssembly() {
   </group>;
 }
 
-export function ThreeHeroStage({ theme }: { theme: SpatialStorefrontTheme }) {
+export function ThreeHeroStage({ theme, quality = "high" }: { theme: SpatialStorefrontTheme; quality?: "high" | "medium" | "low" }) {
   const palette = palettes[theme];
+  const isHigh = quality === "high";
+  const isLow = quality === "low";
 
   return (
     <div className="store-hero-webgl" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0.2, 7.4], fov: 40, near: 0.1, far: 40 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        dpr={isHigh ? [1, 2] : isLow ? [0.75, 1] : [1, 1]}
+        gl={{ antialias: !isLow, alpha: true, powerPreference: isLow ? "default" : "high-performance" }}
         shadows={false}
+        frameloop={isLow ? "demand" : "always"}
       >
         <ambientLight intensity={0.72} />
         <directionalLight position={[4, 6, 5]} intensity={2.5} color="#ffffff" />
-        <pointLight position={[-4, 1, 4]} intensity={18} distance={12} color={palette.accent} />
-        <pointLight position={[4, -2, 3]} intensity={14} distance={10} color={palette.cool} />
-        {theme === "foundry3d" ? <><HardwareAssembly theme={theme}/><Fasteners theme={theme}/></> : null}
+        <pointLight position={[-4, 1, 4]} intensity={isLow ? 10 : 18} distance={12} color={palette.accent} />
+        <pointLight position={[4, -2, 3]} intensity={isLow ? 8 : 14} distance={10} color={palette.cool} />
+        {theme === "foundry3d" ? <><HardwareAssembly theme={theme}/>{isHigh ? <Fasteners theme={theme}/> : null}</> : null}
         {theme === "axonometric" ? <AxonometricAssembly/> : null}
         {theme === "prism3d" ? <PrismAssembly/> : null}
-        <Grid
-          position={[0, -2.5, -1.4]}
-          args={[14, 10]}
-          cellColor={palette.metal}
-          sectionColor={palette.accent}
-          cellSize={0.55}
-          sectionSize={2.2}
-          cellThickness={0.35}
-          sectionThickness={0.65}
-          fadeDistance={9}
-          fadeStrength={1.8}
-          infiniteGrid
-        />
+        {isLow ? null : (
+          <Grid
+            position={[0, -2.5, -1.4]}
+            args={[14, 10]}
+            cellColor={palette.metal}
+            sectionColor={palette.accent}
+            cellSize={0.55}
+            sectionSize={2.2}
+            cellThickness={0.35}
+            sectionThickness={0.65}
+            fadeDistance={9}
+            fadeStrength={1.8}
+            infiniteGrid
+          />
+        )}
         <AdaptiveDpr pixelated />
       </Canvas>
     </div>

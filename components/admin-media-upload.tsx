@@ -4,7 +4,7 @@ import { upload } from "@vercel/blob/client";
 import { FileUp, ImageIcon, Loader2, RotateCcw, Video, X } from "lucide-react";
 import { ChangeEvent, useRef, useState } from "react";
 
-type MediaKind = "IMAGE" | "VIDEO" | "PDF" | "DOCUMENT";
+type MediaKind = "IMAGE" | "VIDEO" | "PDF" | "DOCUMENT" | "MODEL";
 
 type RegisteredMedia = {
   id: string;
@@ -29,13 +29,15 @@ const maximumSize: Record<MediaKind, number> = {
   IMAGE: 12_000_000,
   VIDEO: 250_000_000,
   PDF: 25_000_000,
-  DOCUMENT: 25_000_000
+  DOCUMENT: 25_000_000,
+  MODEL: 20_000_000
 };
 
 function kindFor(file: File): MediaKind {
   if (file.type.startsWith("image/")) return "IMAGE";
   if (file.type.startsWith("video/")) return "VIDEO";
   if (file.type === "application/pdf") return "PDF";
+  if (/\.(glb|gltf)$/i.test(file.name)) return "MODEL";
   return "DOCUMENT";
 }
 

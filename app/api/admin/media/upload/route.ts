@@ -23,15 +23,19 @@ const contentTypes: Record<MediaKind, string[]> = {
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "application/vnd.ms-excel",
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  ]
+  ],
+  MODEL: ["model/gltf-binary", "model/gltf+json", "application/octet-stream"]
 };
 
 const maximumSize: Record<MediaKind, number> = {
   IMAGE: 12_000_000,
   VIDEO: 250_000_000,
   PDF: 25_000_000,
-  DOCUMENT: 25_000_000
+  DOCUMENT: 25_000_000,
+  MODEL: 20_000_000
 };
+
+const modelExtensions = /\.(glb|gltf)$/i;
 
 function parsePayload(value: string | null): UploadPayload {
   const data = JSON.parse(value || "{}") as Partial<UploadPayload>;
@@ -39,6 +43,7 @@ function parsePayload(value: string | null): UploadPayload {
     throw new Error("Invalid upload metadata");
   }
   if (!contentTypes[data.kind].includes(data.mimeType)) throw new Error("Unsupported file type");
+  if (data.kind === "MODEL" && !modelExtensions.test(data.name)) throw new Error("3D models must be .glb or .gltf files");
   if (Number(data.sizeBytes) > maximumSize[data.kind]) throw new Error("File exceeds the upload limit");
   return {
     actorId: data.actorId || null,
