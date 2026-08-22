@@ -31,7 +31,6 @@
     "test:order-stock": "tsx scripts/test-order-stock.ts"
   },
   "dependencies": {
-    "@dimforge/rapier3d-compat": "^0.19.3",
     "@fontsource/barlow-condensed": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@fontsource/manrope": "^5.2.8",
@@ -40,8 +39,6 @@
     "@react-pdf/renderer": "^4.5.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
-    "@react-three/rapier": "^2.2.0",
-    "@theatre/core": "^0.7.2",
     "@vercel/blob": "^2.6.1",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
@@ -54,7 +51,6 @@
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-to-print": "^3.3.0",
     "react-use-measure": "^2.1.7",
     "recharts": "^3.9.2",
     "tailwind-merge": "^2.6.0",
@@ -62,7 +58,6 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@theatre/studio": "^0.7.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.10.2",
     "@types/qrcode": "^1.5.5",

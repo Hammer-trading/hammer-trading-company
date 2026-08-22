@@ -96,6 +96,14 @@ The admin can update their profile, email, password, and active sessions from `/
 
 The storefront includes database-first product listings with a guarded JSON fallback, dynamic homepage sections, product variants and image galleries, cart, package cart lines, checkout, order tracking, Google-login-ready authentication, WhatsApp quick order links, one-click COD Buy Now, bulk quote requests, SEO metadata, sitemap, robots.txt, and PWA support.
 
+### 3D Experience (every device)
+
+- **3D hero** renders on mobile, tablet and desktop with automatic quality tiers (WebGL support, memory, cores, touch, data-saver, reduced-motion are all respected; unsupported devices get the static poster fallback).
+- **Product 3D model viewer** loads `.glb`/`.gltf` models with lazy loading, error boundary, battery-friendly `frameloop="demand"` on touch devices, desktop-only auto-rotate, and a "Drag to rotate" hint on touch.
+- Admin can upload 3D models (max 20 MB) directly from `/admin/products` — the upload pipeline stores them in Vercel Blob and records them in the media library.
+- Manage the complete spatial storefront interfaces (Foundry Cinema, Axonometric Workshop, Prism Gallery) at `/admin/store-3d` with live responsive preview.
+- Two seeded products ship with demo CORS-friendly sample models so the viewer can be verified immediately; replace them with your own uploads.
+
 Buy Now route:
 
 ```bash

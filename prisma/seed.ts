@@ -159,7 +159,10 @@ async function main() {
       stock: 18,
       weightKg: 2.4,
       featured: true,
-      bestSeller: true
+      bestSeller: true,
+      // Demo 3D model (CORS-friendly Khronos sample). Replace with your own
+      // upload via /admin/products -> "Upload" button next to the model URL.
+      modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb"
     },
     {
       name: "Stanley Claw Hammer 16oz",
@@ -201,7 +204,9 @@ async function main() {
       costPrice: 950,
       stock: 75,
       weightKg: 0.5,
-      featured: false
+      featured: false,
+      // Demo 3D model — a helmet, matches this product. Replace with your own upload.
+      modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/DamagedHelmet/glTF-Binary/DamagedHelmet.glb"
     },
     {
       name: "Total Screwdriver Set 12pcs",
@@ -260,7 +265,8 @@ async function main() {
         isNewArrival: item.featured,
         isHeavyItem: Boolean(item.heavy),
         isBulky: Boolean(item.bulky),
-        isActive: true
+        isActive: true,
+        ...(item.modelUrl ? { modelUrl: item.modelUrl } : {})
       },
       create: {
         id: `seed-${item.slug}`,
@@ -285,6 +291,7 @@ async function main() {
         isNewArrival: item.featured,
         isHeavyItem: Boolean(item.heavy),
         isBulky: Boolean(item.bulky),
+        ...(item.modelUrl ? { modelUrl: item.modelUrl } : {}),
         warranty: "Supplier warranty applies.",
         returnPolicy: "Return accepted for unopened or defective products according to store policy.",
         tags: [category.slug, brand.slug]

@@ -84,6 +84,13 @@ export const productInputSchema = z.object({
       message: "Product images are too large. Re-upload them so they can be optimized."
     });
   }
+  if (value.modelUrl && !/\.(glb|gltf)(\?.*)?$/i.test(value.modelUrl)) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["modelUrl"],
+      message: "3D model URL must point to a .glb or .gltf file."
+    });
+  }
 });
 
 export const categoryInputSchema = z.object({
