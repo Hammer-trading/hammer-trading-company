@@ -15,6 +15,7 @@ type CatalogSnapshot = {
   weightKg: number;
   isHeavyItem: boolean;
   hasSizeVariants?: boolean;
+  modelUrl?: string;
 };
 
 // Last-resort read-only snapshot of the live catalog. Database results always take priority.
@@ -157,7 +158,8 @@ const liveCatalogSnapshot: CatalogSnapshot[] = [
     image: "/brand/htc-logo.png",
     weightKg: 2.4,
     isHeavyItem: false,
-    hasSizeVariants: true
+    hasSizeVariants: true,
+    modelUrl: "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Lantern/glTF-Binary/Lantern.glb"
   },
   {
     id: "cmrj5b8j90044lp4ntg2xw7fs",
@@ -239,5 +241,6 @@ export const storefrontFallbackProducts: CatalogProduct[] = liveCatalogSnapshot.
   isFeatured: true,
   weightKg: product.weightKg,
   isHeavyItem: product.isHeavyItem,
+  modelUrl: product.modelUrl,
   variants: snapshotVariants(product)
 }));
